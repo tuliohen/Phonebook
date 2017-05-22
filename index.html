@@ -1,0 +1,44 @@
+<html ng-app="listaTelefonica">
+    <head>
+        <meta charset="utf-8">
+        <title>Lista Telefônica</title>
+        <style>
+            .jumbotron {
+                width: 400px;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 20px;
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+        <script src="node_modules/angular/angular.js"></script>
+        <script>
+            var app = angular.module("listaTelefonica", []);
+            app.controller("listaTelefonicaCtrl", function($scope){
+                $scope.app = "Lista telefônica";
+                $scope.contatos = [
+                    {nome:"Pedro", telefone:"99998888"},
+                    {nome:"Ana", telefone:"88889999"},
+                    {nome:"Tulio", telefone:"99567888"},
+                    {nome:"João", telefone:"99873288"}
+                ];
+            });
+        </script>
+        <body ng-controller="listaTelefonicaCtrl">
+            <div class="jumbotron">
+                <h4>{{app}}</h4>
+                <table class="table">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                    </tr>
+                    <tr ng-repeat="contato in contatos">
+                        <td>{{contato.nome}}</td>
+                        <td>{{contato.telefone}}</td>
+                    </tr>
+                </table>
+            </div>
+        </body>
+    </head>
+</html>
