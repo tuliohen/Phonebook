@@ -10,6 +10,12 @@
                 margin-right: auto;
                 margin-top: 20px;
             }
+            .table {
+                margin-top: 20px;
+            }
+            .form-control {
+                margin-bottom: 5px;
+            }
         </style>
         <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
         <script src="node_modules/angular/angular.js"></script>
@@ -23,12 +29,15 @@
                     {nome:"Tulio", telefone:"99567888"},
                     {nome:"João", telefone:"99873288"}
                 ];
+                $scope.adicionarContato = function(contato){
+                    $scope.contatos.push(angular.copy(contato));
+                };
             });
         </script>
         <body ng-controller="listaTelefonicaCtrl">
             <div class="jumbotron">
-                <h4>{{app}}</h4>
-                <table class="table">
+                <h3>{{app}}</h3>
+                <table class="table table-striped">
                     <tr>
                         <th>Nome</th>
                         <th>Telefone</th>
@@ -38,6 +47,10 @@
                         <td>{{contato.telefone}}</td>
                     </tr>
                 </table>
+                </hr>
+                <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome"></input>
+                <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone"></input>
+                <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)">Adicionar</button>
             </div>
         </body>
     </head>
