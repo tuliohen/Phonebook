@@ -30,10 +30,10 @@
             app.controller("listaTelefonicaCtrl", function($scope){
                 $scope.app = "Lista telefônica";
                 $scope.contatos = [
-                    {nome:"Pedro", telefone:"99998888"},
-                    {nome:"Ana", telefone:"88889999"},
-                    {nome:"Tulio", telefone:"99567888"},
-                    {nome:"João", telefone:"99873288"}
+                    {nome:"Pedro", telefone:"99998888", cor: "yellow"},
+                    {nome:"Ana", telefone:"88889999", cor: "red"},
+                    {nome:"Tulio", telefone:"99567888", cor: "blue"},
+                    {nome:"João", telefone:"99873288", cor: "black"}
                 ];
                 $scope.isContatoSelecionado = function(contatos){
                     return contatos.some(function(contato){
@@ -69,12 +69,14 @@
                         <th>Nome</th>
                         <th>Telefone</th>
                         <th>Operadora</th>
+                        <th>Cor</th>
                     </tr>
                     <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos">
                         <td><input type="checkbox" ng-model="contato.selecionado"></input></td>
                         <td>{{contato.nome}}</td>
                         <td>{{contato.telefone}}</td>
                         <td>{{contato.operadora.nome}}</td>
+                        <td><div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div></td>
                     </tr>
                 </table>
                 </hr>
@@ -86,6 +88,7 @@
                 <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar contato</button>
                 <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-disabled="!isContatoSelecionado(contatos)">Apagar contatos</button>
             </div>
+            <div ng-include="'footer.html'"></div>
         </body>
     </head>
 </html>
