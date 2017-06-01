@@ -3,77 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>Lista Telefônica</title>
-    <style>
-        .jumbotron {
-            width: 600px;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 20px;
-            padding: 20px;
-        }
-
-        .table {
-            margin-top: 20px;
-        }
-
-        .form-control {
-            margin-bottom: 5px;
-        }
-
-        .selecionado {
-            background-color: yellow;
-        }
-
-        .negrito {
-            font-weight: bold;
-        }
-    </style>
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
     <script src="node_modules/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/listaTelefonicaCtrl.js"></script>
     <script src="node_modules/angular-messages/angular-messages.js"></script>
-    <script>
-        var app = angular.module("listaTelefonica", ["ngMessages"]);
-        app.controller("listaTelefonicaCtrl", function ($scope) {
-            $scope.app = "Lista telefônica";
-            $scope.contatos = [
-                { nome: "Pedro", data: new Date(), telefone: "99998888", cor: "yellow" },
-                { nome: "Ana", data: new Date(), telefone: "88889999", cor: "red" },
-                { nome: "Tulio", data: new Date(), telefone: "99567888", cor: "blue" },
-                { nome: "João", data: new Date(), telefone: "99873288", cor: "black" }
-            ];
-            $scope.isContatoSelecionado = function (contatos) {
-                return contatos.some(function (contato) {
-                    return contato.selecionado;
-                });
-            };
-            $scope.ordenarPor = function (campo) {
-                $scope.criterioDeOrdenacao = campo;
-                $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
-            };
-            $scope.adicionarContato = function (contato) {
-                $scope.contatos.push(angular.copy(contato));
-                delete $scope.contato;
-                $scope.contatoForm.$setPristine();
-            };
-            $scope.apagarContatos = function (contatos) {
-                $scope.contatos = contatos.filter(function (contato) {
-                    if (!contato.selecionado) return contato;
-                });
-            };
-            $scope.operadoras = [
-                { nome: "Oi", código: 14, categoria: "Celular" },
-                { nome: "Tim", código: 15, categoria: "Celular" },
-                { nome: "Vivo", código: 16, categoria: "Celular" },
-                { nome: "GVT", código: 25, categoria: "Fixo" },
-                { nome: "Embratel", código: 21, categoria: "Fixo" }
-            ];
-            $scope.classe1 = "selecionado";
-            $scope.classe2 = "negrito";
-
-        });
-
-    </script>
 
     <body ng-controller="listaTelefonicaCtrl">
         <div class="jumbotron">
@@ -124,7 +59,7 @@
             <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar contato</button>
             <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-disabled="!isContatoSelecionado(contatos)">Apagar contatos</button>
         </div>
-        <div ng-include="'footer.html'"></div>
+        <div ng-include="'view/footer.html'"></div>
     </body>
 </head>
 
